@@ -1,5 +1,8 @@
-import Link from 'next/link';
+'use client';
+
 import React from 'react';
+import styles from './navbar.module.css';
+import Link from 'next/link';
 
 type PageProps = {
 	children?: React.ReactNode;
@@ -42,14 +45,22 @@ const links = [
 // ?======================================================//
 const Navbar = (props: PageProps) => {
 	return (
-		<div>
-			<Link href='/'>digital agency</Link>
-			<div>
+		<div className={styles.container}>
+			<Link href='/' className={styles.logo}>
+				digital agency
+			</Link>
+			<div className={styles.links}>
 				{links.map((link) => (
-					<Link key={link.id} href={link.url}>
+					<Link key={link.id} href={link.url} className={styles.link}>
 						{link.title}
 					</Link>
 				))}
+				<button
+					className={styles.logout}
+					onClick={() => console.log('Logged out')}
+				>
+					Logout
+				</button>
 			</div>
 		</div>
 	);
